@@ -1,0 +1,7 @@
+{
+  "name": "dev php 8",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "apache",
+  "workspaceFolder": "/var/www/html",
+  "shutdownAction": "stopCompose"
+}
