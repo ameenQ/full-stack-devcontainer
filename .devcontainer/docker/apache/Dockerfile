@@ -19,18 +19,18 @@ RUN sudo apt install git -y
 
 
 ## Install Ruby (Will install 2.7)
-RUN sudo apt install ruby-full -y
+# RUN sudo apt install ruby-full -y
 
 ## Install Python3
-RUN sudo apt-get install python3 python3-dev -y
+# RUN sudo apt-get install python3 python3-dev -y
 
 ## Install Java 17
-RUN sudo wget https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
-RUN sudo tar xvf openjdk-17_linux-x64_bin.tar.gz
-RUN sudo mv jdk-17 /opt/
-RUN echo 'JAVA_HOME=/opt/jdk-17' >> ~/.bashrc
-RUN echo 'PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
-RUN . ~/.bashrc
+# RUN sudo wget https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
+# RUN sudo tar xvf openjdk-17_linux-x64_bin.tar.gz
+# RUN sudo mv jdk-17 /opt/
+# RUN echo 'JAVA_HOME=/opt/jdk-17' >> ~/.bashrc
+# RUN echo 'PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
+# RUN . ~/.bashrc
 
 
 RUN  docker-php-ext-install pdo pdo_mysql mysqli
@@ -58,10 +58,6 @@ RUN sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=com
 # RUN echo 'PATH=$PATH:~/.local/share/coursier/bin' >> ~/.bashrc
 # RUN . ~/.bashrc
 
-## Install Deno
-RUN curl -fsSL https://deno.land/install.sh | sh
-RUN echo 'DENO_INSTALL="/home/developer/.deno"' >> ~/.bashrc
-RUN echo 'PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.bashrc
 
 
 RUN sudo apt-get install -y locate
@@ -90,3 +86,6 @@ RUN git config --global user.email "$gitemail"
 
 RUN composer global require laravel/installer
 RUN export PATH=$PATH:$HOME/.composer/vendor/bin
+
+## Install Deno
+RUN curl -fsSL https://deno.land/install.sh | sh
