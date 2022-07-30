@@ -66,9 +66,22 @@ RUN updatedb
 
 ## Install Nano + VIM for editing
 RUN sudo apt-get install nano vim -y
-EXPOSE 443
+
+RUN rm -f /etc/apache2/sites-available/000-default.conf
+ADD ./000-default.conf /etc/apache2/sites-available
+# RUN ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+RUN sudo mkdir /etc/apache2/ssl/
+
+RUN sudo openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=US/ST=Example/L=City/O=Example Inc/CN=kubernetes.docker.internal"  -keyout /etc/apache2/ssl/ssl.key -out /etc/apache2/ssl/ssl.crt
+RUN sudo chmod 777 /etc/apache2/ssl/ssl.key
+RUN sudo chmod 777 /etc/apache2/ssl/ssl.crt
 
 RUN sudo a2enmod rewrite
+RUN sudo a2enmod ssl
+
+EXPOSE 443
+
 
 RUN sudo service apache2 restart
 
