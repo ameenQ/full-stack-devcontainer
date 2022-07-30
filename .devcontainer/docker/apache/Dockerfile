@@ -88,6 +88,6 @@ RUN composer global require laravel/installer
 RUN export PATH=$PATH:$HOME/.composer/vendor/bin
 
 ## Install Deno
-RUN curl -fsSL https://deno.land/install.sh | sh
-RUN echo 'DENO_INSTALL="/home/developer/.deno"' >> ~/.bashrc
-RUN echo 'PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.bashrc
+# RUN curl -fsSL https://deno.land/install.sh | sh
+# RUN echo 'DENO_INSTALL="/home/developer/.deno"' >> ~/.bashrc
+# RUN echo 'PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.bashrc
