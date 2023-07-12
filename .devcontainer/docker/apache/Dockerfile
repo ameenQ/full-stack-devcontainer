@@ -8,7 +8,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 
 ## Install Node
-RUN sudo curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+RUN sudo curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
 RUN sudo bash nodesource_setup.sh
 RUN sudo apt install nodejs -y
 RUN sudo npm install -g @angular/cli
@@ -82,8 +82,6 @@ RUN sudo a2enmod ssl
 
 EXPOSE 443
 
-
-RUN sudo service apache2 restart
 
 ## Start Container
 # ENTRYPOINT bash
