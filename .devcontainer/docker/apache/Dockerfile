@@ -1,16 +1,17 @@
 ## Starting from Ubuntu
-FROM php:8.1-apache
+FROM php:8.2.11-apache
 
 ## Create a Non-Root User
-RUN apt-get update && apt-get -y install sudo && apt-get install wget -y && apt-get install curl -y
+RUN apt-get update && apt-get -y install sudo && apt-get install wget -y && apt-get install curl  -y 
 RUN useradd -m developer && echo "www-data:www-data" | chpasswd && adduser developer sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 
 ## Install Node
-RUN sudo curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
-RUN sudo bash nodesource_setup.sh
-RUN sudo apt install nodejs -y
+RUN sudo apt-get update && sudo apt-get install -y ca-certificates curl gnupg
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+RUN sudo apt-get update && sudo apt-get install nodejs -y
 RUN sudo npm install -g @angular/cli
 
 
@@ -32,8 +33,9 @@ RUN sudo apt install git -y
 # RUN echo 'PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
 # RUN . ~/.bashrc
 
+RUN sudo apt-get install weasyprint libpng-dev zlib1g-dev -y
 
-RUN  docker-php-ext-install pdo pdo_mysql mysqli
+RUN  docker-php-ext-install pdo pdo_mysql mysqli gd
 RUN sudo apt-get install -y \
         libzip-dev \
         zip \
