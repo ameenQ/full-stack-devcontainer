@@ -15,10 +15,9 @@ You can run Developer environment from Docker **without installing any dependenc
 
 ## Current Container will have
 
- - PHP 8.1
- - MySQL 8.0.29
- - MongoDB 5.0
- - MongoExpress
+ - PHP 8.2.11
+ - MySQL 8.0.34
+ - MongoDB 7.0
  - Git
  - nodejs
  - Angular CLI
