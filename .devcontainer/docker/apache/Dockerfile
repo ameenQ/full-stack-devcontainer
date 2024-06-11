@@ -1,5 +1,5 @@
 ## Starting from Ubuntu
-FROM php:8.3.1-apache
+FROM php:8.2.11-apache
 
 ## Create a Non-Root User
 RUN apt-get update && apt-get -y install sudo && apt-get install wget -y && apt-get install curl  -y 
@@ -33,9 +33,8 @@ RUN sudo apt install git -y
 # RUN echo 'PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
 # RUN . ~/.bashrc
 
-RUN sudo apt-get install weasyprint libfreetype-dev libjpeg-dev libpng-dev libwebp-dev zlib1g-dev -y
+RUN sudo apt-get install weasyprint libpng-dev zlib1g-dev -y
 
-RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp 
 RUN  docker-php-ext-install pdo pdo_mysql mysqli gd
 RUN sudo apt-get install -y \
         libzip-dev \
